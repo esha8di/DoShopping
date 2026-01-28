@@ -1,5 +1,26 @@
-# Vue 3 + Vite
+# Vue 3 E-Commerce Website 🛒
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A simple e-commerce web application built with **Vue 3**, where users can browse products, add them to a shopping cart, update quantities, and remove items. The cart data is saved in **localStorage**, so it persists across page reloads.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+---
+
+## Features 
+
+- Browse a list of products with price and details.
+- Add products to the shopping cart.
+- Increase or decrease product quantity in the cart.
+- Remove products from the cart.
+- View total price of items in the cart.
+- Cart data is persisted using **localStorage**.
+
+---
+
+## Technologies Used 
+
+- **Vue 3** (Composition API)  
+- **HTML5 & CSS3**  
+- **JavaScript (ES6)**  
+- **localStorage** for persistent cart data  
+
+---
+
