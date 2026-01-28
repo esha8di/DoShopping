@@ -1,5 +1,12 @@
 <template>
   <div class="overflow-x-auto bg-white">
+    <select
+     v-model="selectedData"
+     class="border rounded p-1" name="" id="">
+      <option value="">Sort by Quanity</option>
+      <option value="asc">Low to High</option>
+      <option value="dsc">High to low</option>
+    </select>
     <table class="table">
       <!-- head -->
       <thead>
@@ -11,7 +18,7 @@
           <th>Category</th>
         </tr>
       </thead>
-      <tbody v-for="(p, index) in productStore.myProducts" :key="p.id">
+      <tbody v-for="(p, index) in sortData" :key="p.id">
         <!-- row 1 -->
         <tr class="p-2">
           <th>{{ index + 1 }}</th>
@@ -40,10 +47,11 @@
 
 <script setup>
 // logic here
-import { store } from "../piniaStore/store.js";
 import { useProductStore } from "../piniaStore/piniaStore.js";
-
+import {ref,computed} from "vue";
 const productStore = useProductStore();
+const selectedData= ref("");
+const sortedData= ref([]);
 const deleteProduct = (id) => {
   productStore.removeProduct(id);
 };
@@ -51,6 +59,20 @@ const deleteProduct = (id) => {
 const increaseQuantity = (p) => {
   productStore.addProduct(p);
 };
+
+const sortData = computed(() =>{
+ const products = [...productStore.myProducts];
+
+ if(selectedData.value== "asc"){
+  return products.sort((a,b)=>a.quantity - b.quantity);
+ }
+ else if(selectedData.value == "dsc"){
+  return products.sort((a,b)=> b.quantity - a.quantity)
+ }
+ else{
+  return products;
+ }
+})
 </script>
 
 <style scoped>

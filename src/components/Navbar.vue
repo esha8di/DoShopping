@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white shadow-sm px-4 py-2 flex justify-between items-center">
+  <div class="bg-white shadow-sm px-4 py-2 flex justify-between items-center fixed top-0 left-0 h-[70px]  w-full z-999">
     <!-- Logo -->
     <a class="text-xl font-bold">DoShopping</a>
 
@@ -14,20 +14,25 @@
             {{ productStore.myProducts.length }}
           </span>
         </RouterLink>
+        
       </li>
+      <li><RouterLink to="/myfav" class="hover:underline">My favorate
+      <span class="bg-red-500 text-white rounded-full px-2 ml-1">
+            {{ MyFavProducts.myProducts.length }}
+          </span></RouterLink></li>
     </ul>
 
     <!-- Login/Logout button -->
     <button
       @click="toggle"
-      class="border px-3 py-1 rounded"
+      class="border px-3 py-1 rounded hidden"
       :class="buttonClass"
     >
       {{ loggedIn ? "Logout" : "Login" }}
     </button>
 
     <!-- Mobile dropdown -->
-    <!-- <div class="lg:hidden relative">
+     <div class="lg:hidden relative z-999">
       <button @click="open = !open" class="p-2 border rounded">
         ☰
       </button>
@@ -44,15 +49,23 @@
               {{ productStore.myProducts.length }}
             </span>
           </RouterLink>
+          
         </li>
+         <li><RouterLink to="/myfav" class="hover:underline">My favorate 
+         <span class="bg-red-500 text-white rounded-full px-2 ml-1">
+              {{ MyFavProducts.myProducts.length}}
+            </span></RouterLink></li>
       </ul>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from "vue";
 import { useProductStore } from "../piniaStore/piniaStore.js";
+import {useFavStore} from "../piniaStore/favStore.js"
+const MyFavProducts =useFavStore();
+const favcount=MyFavProducts.myProducts.length
 
 const productStore = useProductStore();
 const loggedIn = ref(false);

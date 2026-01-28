@@ -9,7 +9,7 @@ import Navbar from "./components/Navbar.vue";
     <Navbar></Navbar>
     <!-- on top -->
 
-    <div class="mt-5">
+    <div class="mt-15">
       <RouterView />
       <!-- content below -->
     </div>

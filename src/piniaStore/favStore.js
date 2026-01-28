@@ -1,24 +1,16 @@
 import { defineStore } from "pinia";
 
-export const useProductStore = defineStore("products", {
+export const useFavStore = defineStore("favProducts", {
   state: () => ({
-    myProducts: JSON.parse(localStorage.getItem("cart")) || [],
+    myProducts: JSON.parse(localStorage.getItem("fav")) || [],
   }),
 
-  getters:{
-    totalPrice(state){
-      return state,this.myProducts.reduce((total,p)=>{
-        return total+ (p.price*p.quantity);
-      },0)
-      console.log(totalPrice)
-    },
 
-
-  },
+  
   actions: {
     saveCart() {
       localStorage.setItem(
-        "cart",
+        "fav",
         JSON.stringify(this.myProducts)
       )
 
@@ -39,14 +31,9 @@ export const useProductStore = defineStore("products", {
    
 
     removeProduct(id) {
-      const existing = this.myProducts.find((p) => p.id == id);
-      if (existing) {
-        if (existing.quantity > 1) {
-          existing.quantity -= 1;
-        } else {
+      
           this.myProducts = this.myProducts.filter((p) => p.id != id);
-        }
-      }
+        
       this.saveCart();
     },
   },
