@@ -1,3 +1,5 @@
+
+
 <template>
   <div
     v-if="product"
@@ -69,6 +71,7 @@ const fetchData = async () => {
 
 onMounted(() => {
   fetchData();
+  fetchData(); 
 });
 
 const addtoMyProducts = () => {

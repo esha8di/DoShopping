@@ -5,6 +5,7 @@ import router from "./router";
 import { createPinia } from "pinia";
 import "vue3-toastify/dist/index.css";
 
+
 const app = createApp(App);
 
 const pinia = createPinia();
