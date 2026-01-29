@@ -52,6 +52,7 @@
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useProductStore } from "../piniaStore/piniaStore.js";
+import { toast } from "vue3-toastify";
 
 const product = ref(null);
 const route = useRoute();
@@ -71,6 +72,7 @@ onMounted(() => {
 });
 
 const addtoMyProducts = () => {
+  toast.success("Product added to cart!");
   productStore.addProduct(product.value);
 };
 </script>
