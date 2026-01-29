@@ -40,6 +40,7 @@
             <p
               @click="addtoFav(d)"
               class="text-xl cursor-pointer hover:text-red-500 transition"
+              :class="MyFavProducts.favButton(d.id)"
             >
               ♡
             </p>
@@ -62,10 +63,9 @@
 </template>
 
 <script setup>
-import { watch } from "vue";
+import { ref, watch } from "vue";
 import { useFavStore } from "../piniaStore/favStore.js";
 const MyFavProducts = useFavStore();
-
 const props = defineProps({
   data: {
     type: Array,

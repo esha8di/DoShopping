@@ -46,14 +46,14 @@
           <RouterLink to="/myproducts" class="block px-4 py-2 hover:bg-gray-100">
             My Products
             <span class="bg-red-500 text-white rounded-full px-2 ml-1">
-              {{ productStore.myProducts.length }}
+              {{ productStore.totalProducts }}
             </span>
           </RouterLink>
           
         </li>
          <li><RouterLink to="/myfav" class="hover:underline">My favorate 
          <span class="bg-red-500 text-white rounded-full px-2 ml-1">
-              {{ MyFavProducts.myProducts.length}}
+              {{MyFavProducts.totalFavProducts }}
             </span></RouterLink></li>
       </ul>
     </div>
@@ -65,7 +65,6 @@ import { ref, computed } from "vue";
 import { useProductStore } from "../piniaStore/piniaStore.js";
 import {useFavStore} from "../piniaStore/favStore.js"
 const MyFavProducts =useFavStore();
-const favcount=MyFavProducts.myProducts.length
 
 const productStore = useProductStore();
 const loggedIn = ref(false);

@@ -1,8 +1,6 @@
 <template>
   <div class="overflow-x-auto bg-white">
-    <select
-     v-model="selectedData"
-     class="border rounded p-1" name="" id="">
+    <select v-model="selectedData" class="border rounded p-1" name="" id="">
       <option value="">Sort by Quanity</option>
       <option value="asc">Low to High</option>
       <option value="dsc">High to low</option>
@@ -24,22 +22,30 @@
           <th>{{ index + 1 }}</th>
           <td>{{ p.title }}</td>
           <td>{{ p.quantity }}</td>
-          <td>{{ Math.round(p.price * p.quantity) }} TK</td>
+          <td>{{ (p.price * p.quantity).toFixed(2) }} TK</td>
           <td>{{ p.category }}</td>
           <button @click="increaseQuantity(p)" class="mx-2 btn">✚</button>
-          <button @click="deleteProduct(p.id)" class="border btn my-auto">
+          <button @click="deleteProduct(p.id)" class="border btn my-auto mx-2">
             ─
+          </button>
+          <button
+            @click="productStore.deleteProduct(p.id)"
+            class="border btn my-auto text-red-600"
+          >
+            Delete
           </button>
         </tr>
       </tbody>
     </table>
     <div class="mt-6 text-left font-bold text-lg">
-      Total: {{ Math.round(productStore.totalPrice) }} TK
+      Total: {{ Math.ceil(productStore.totalPrice) }} TK
     </div>
     <div class="flex gap-3 mt-10 mx-auto">
       <button class="btn btn-primary">Porceed to Checkout</button>
       <router-link to="/products">
-        <button class="btn bg-red-400 hover:bg-red-600">Go Shopping</button></router-link
+        <button class="btn bg-red-400 hover:bg-red-600">
+          Go Shopping
+        </button></router-link
       >
     </div>
   </div>
@@ -48,10 +54,10 @@
 <script setup>
 // logic here
 import { useProductStore } from "../piniaStore/piniaStore.js";
-import {ref,computed} from "vue";
+import { ref, computed } from "vue";
 const productStore = useProductStore();
-const selectedData= ref("");
-const sortedData= ref([]);
+const selectedData = ref("");
+const sortedData = ref([]);
 const deleteProduct = (id) => {
   productStore.removeProduct(id);
 };
@@ -60,19 +66,17 @@ const increaseQuantity = (p) => {
   productStore.addProduct(p);
 };
 
-const sortData = computed(() =>{
- const products = [...productStore.myProducts];
+const sortData = computed(() => {
+  const products = [...productStore.myProducts];
 
- if(selectedData.value== "asc"){
-  return products.sort((a,b)=>a.quantity - b.quantity);
- }
- else if(selectedData.value == "dsc"){
-  return products.sort((a,b)=> b.quantity - a.quantity)
- }
- else{
-  return products;
- }
-})
+  if (selectedData.value == "asc") {
+    return products.sort((a, b) => a.quantity - b.quantity);
+  } else if (selectedData.value == "dsc") {
+    return products.sort((a, b) => b.quantity - a.quantity);
+  } else {
+    return products;
+  }
+});
 </script>
 
 <style scoped>

@@ -12,7 +12,6 @@
         :key="product.id"
         class="relative bg-white shadow-md rounded-lg p-4"
       >
-        
         <button
           @click="MyFavProducts.removeProduct(product.id)"
           class="absolute top-2 right-2 text-red-500 hover:text-red-700 text-xl"
@@ -31,11 +30,9 @@
           {{ product.title }}
         </h2>
 
-        <p class="font-bold text-lg">${{ product.price }}</p>
+        <p class="font-bold text-lg">{{ product.price }}TK</p>
 
         <div class="text-sm text-gray-600">
-         
-
           <span v-if="product.quantity > 5" class="text-red-500 text-lg">
             ❤️❤️❤️❤️❤️
           </span>
@@ -62,8 +59,6 @@ const MyFavProducts = useFavStore();
 const removeFav = (id) => {
   MyFavProducts.removeProduct(id);
 };
-
-console.log(MyFavProducts.myProducts);
 </script>
 
 <style scoped>

@@ -1,40 +1,44 @@
 import { defineStore } from "pinia";
+import { computed, ref } from "vue";
 
-export const useFavStore = defineStore("favProducts", {
-  state: () => ({
-    myProducts: JSON.parse(localStorage.getItem("fav")) || [],
-  }),
-
-
+export const useFavStore = defineStore("favProducts", ()=>{
+    const myProducts=ref(JSON.parse(localStorage.getItem("fav")) || []);
   
-  actions: {
-    saveCart() {
+    const saveCart =()=> {
       localStorage.setItem(
         "fav",
-        JSON.stringify(this.myProducts)
+        JSON.stringify(myProducts.value)
       )
 
-    },
-    addProduct(product) {
-      const existing = this.myProducts?.find((p) => p.id == product?.id);
+    };
+    const addProduct=(product)=> {
+      const existing =myProducts.value.find((p) => p.id == product?.id);
       if (existing) {
-        existing.quantity += 1;
+        existing.quantity = 1;
       } else {
-        this.myProducts.push({
+        myProducts.value.push({
           ...product,
           quantity: 1,
           
         });
       }
-      this.saveCart();
-    },
+      saveCart();
+    };
    
 
-    removeProduct(id) {
+    const removeProduct=(id) =>{
       
-          this.myProducts = this.myProducts.filter((p) => p.id != id);
+          myProducts.value = myProducts.value.filter((p) => p.id != id);
         
-      this.saveCart();
-    },
-  },
+      saveCart();
+    };
+
+    const totalFavProducts  = computed(()=>myProducts.value.length)
+
+    const favButton =(id) =>{
+      const existing =myProducts.value.find((p) => p.id == id);
+      return existing ? "text-red-500" : "text-gray-500";
+    } 
+  
+return {myProducts,removeProduct,addProduct,totalFavProducts,favButton}
 });

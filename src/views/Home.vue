@@ -45,8 +45,19 @@
             <div
               class="flex justify-between items-center text-sm text-gray-600"
             >
-              <p class="flex items-center gap-1">⭐ {{ d.rating.rate }}</p>
-              <p class="text-xl cursor-pointer hover:text-red-500 transition">
+              <div class="flex items-center gap-1">
+                <span v-for="n in Math.floor(d.rating.rate)" :key="n">
+                  ⭐
+                </span>
+
+                <span v-if="!Number.isInteger(d.rating.rate)"> ✩ </span>
+              </div>
+
+              <p
+                @click="addtoFav(d)"
+                class="text-xl cursor-pointer hover:text-red-500 transition"
+                :class="MyFavProducts.favButton(d.id)"
+              >
                 ♡
               </p>
             </div>
@@ -70,6 +81,8 @@
 
 <script setup>
 import { ref, onMounted, toRaw } from "vue";
+import { useFavStore } from "../piniaStore/favStore.js";
+const MyFavProducts = useFavStore();
 
 // reactive variables
 const data = ref([]);
@@ -88,6 +101,9 @@ const fetchData = async () => {
 onMounted(() => {
   fetchData();
 });
+const addtoFav = (d) => {
+  MyFavProducts.addProduct(d);
+};
 </script>
 
 <style scoped></style>

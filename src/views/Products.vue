@@ -32,8 +32,8 @@ const fetchData = async () => {
   const json = await response.json();
   console.log(json);
   data.value = json;
-   filterData.value = data.value;
-   loading.value = false;
+  filterData.value = data.value;
+  loading.value = false;
 };
 
 // fetch data when component mounts
@@ -42,20 +42,17 @@ onBeforeMount(() => {
 });
 
 // search with category
-const filterByCategory = () =>{
-  if(!selectedCategory.value){
+const filterByCategory = () => {
+  if (!selectedCategory.value) {
     filterData.value = data.value;
-    console.log("length",filterData.length)
-  }
-  else{
+    console.log("length", filterData.length);
+  } else {
     filterData.value = data.value.filter(
-      d => d.category.toLowerCase() == selectedCategory.value.toLocaleLowerCase()
-    )
+      (d) =>
+        d.category.toLowerCase() == selectedCategory.value.toLocaleLowerCase(),
+    );
   }
-}
-
-
-
+};
 </script>
 
 <style scoped>

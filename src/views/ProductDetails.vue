@@ -20,7 +20,7 @@
 
     <!-- Price & Rating -->
     <div class="flex justify-center items-center gap-6 mb-5">
-      <p class="text-lg font-bold">Price: 💸 {{ Math.round(product.price) }}</p>
+      <p class="text-lg font-bold">Price: 💸 {{ product.price }}</p>
       <div class="flex items-center gap-1">
         <span class="font-semibold">{{ product.rating.rate }}</span>
         <svg
@@ -60,7 +60,7 @@ const productStore = useProductStore();
 
 const fetchData = async () => {
   const response = await fetch(
-    `https://fakestoreapi.com/products/${productId}`
+    `https://fakestoreapi.com/products/${productId}`,
   );
   const data = await response.json();
   product.value = data;
@@ -71,10 +71,8 @@ onMounted(() => {
 });
 
 const addtoMyProducts = () => {
-  alert("Product Added to the Card");
   productStore.addProduct(product.value);
 };
-
 </script>
 
 <style scoped>
