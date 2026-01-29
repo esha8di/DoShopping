@@ -1,6 +1,6 @@
 # Vue 3 E-Commerce Website 🛒
 
-A simple e-commerce web application built with **Vue 3**, where users can browse products, add them to a shopping cart, update quantities, and remove items. The cart data is saved in **localStorage**, so it persists across page reloads.
+A simple e-commerce web application built with **Vue 3**, where users can browse products, filter them by categories, add them to a shopping cart, update quantities, and remove items. The cart data is saved in **localStorage**, so it persists across page reloads.
 
 ---
 
@@ -18,7 +18,7 @@ A simple e-commerce web application built with **Vue 3**, where users can browse
 ## Technologies Used 
 
 - **Vue 3** (Composition API)  
-- **HTML5 & CSS3**  
+- **HTML5 & Tailwind**  
 - **JavaScript (ES6)**  
 - **localStorage** for persistent cart data  
 
