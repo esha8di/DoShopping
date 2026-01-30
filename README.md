@@ -22,5 +22,7 @@ A simple e-commerce web application built with **Vue 3**, where users can browse
 - **JavaScript (ES6)**  
 - **localStorage** for persistent cart data  
 
+## Live Link :
+- https://doshoppingbdfunnel.netlify.app/
 ---
 
