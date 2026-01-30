@@ -2,7 +2,7 @@
   <div>
     <select
       v-model="selectedCategory"
-      @change="filterByCategory"
+      @change="filterByCategory()"
       class="border border-black p-2 rounded mb-4 mr-2"
     >
       <option value="">All Categories</option>
@@ -14,7 +14,7 @@
 
     <input
       v-model="search"
-      @change="searchByTitle"
+      @change="searchByTitle()"
       class="border border-black p-2 rounded mb-4"
       type="text"
       name=""

@@ -5,12 +5,13 @@
       <option value="asc">Low to High</option>
       <option value="dsc">High to low</option>
     </select>
-    <table class="table">
+  <div class="overflow-x-auto">
+     <table class="table border p-1">
       <!-- head -->
       <thead>
         <tr>
           <th></th>
-          <th>Product Name</th>
+          <th class="hidden md:block">Product Name</th>
           <th>Quantity</th>
           <th>Price</th>
           <th>Category</th>
@@ -20,7 +21,7 @@
         <!-- row 1 -->
         <tr class="p-2">
           <th>{{ index + 1 }}</th>
-          <td>{{ p.title }}</td>
+          <td class="hidden md:block">{{ p.title }}</td>
           <td>{{ p.quantity }}</td>
           <td>{{ (p.price * p.quantity).toFixed(2) }} TK</td>
           <td>{{ p.category }}</td>
@@ -37,6 +38,9 @@
         </tr>
       </tbody>
     </table>
+
+  </div>
+   
     <div class="mt-6 text-left font-bold text-lg">
       Total: {{ Math.ceil(productStore.totalPrice) }} TK
     </div>
